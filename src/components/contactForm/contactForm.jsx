@@ -1,9 +1,9 @@
 import css from './contactForm.module.css';
 import PropTypes from 'prop-types';
 
-const ContactForm = () => {
+const ContactForm = ({ formSubmit }) => {
   return (
-    <form className={css.phonebookFor}>
+    <form className={css.phonebookForm} onSubmit={formSubmit}>
       <label className={css.phonebookForm__label}>
         Name
         <input
