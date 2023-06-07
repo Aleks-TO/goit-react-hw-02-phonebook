@@ -5,18 +5,35 @@ const ContactList = ({ contacts, filter, onDeleteContact }) => {
   return (
     <ul className={css.contacts__list}>
       {contacts.map(data => {
-        return (
-          <li key={data.id} id={data.id} className={css.contacts__item}>
-            {data.name}: {data.number}
-            <button
-              className={css.contacts__btn}
-              type="button"
-              onClick={onDeleteContact}
-            >
-              delete
-            </button>
-          </li>
-        );
+        if (filter === '') {
+          return (
+            <li key={data.id} id={data.id} className={css.contacts__item}>
+              {data.name}: {data.number}
+              <button
+                className={css.contacts__btn}
+                type="button"
+                onClick={onDeleteContact}
+              >
+                delete
+              </button>
+            </li>
+          );
+        }
+        if (data.name.toLowerCase().includes(filter.toLowerCase())) {
+          return (
+            <li key={data.id} id={data.id} className={css.contacts__item}>
+              {data.name}: {data.number}
+              <button
+                className={css.contacts__btn}
+                type="button"
+                onClick={onDeleteContact}
+              >
+                delete
+              </button>
+            </li>
+          );
+        }
+        return '';
       })}
     </ul>
   );
@@ -26,6 +43,6 @@ export default ContactList;
 
 ContactList.propTypes = {
   contacts: PropTypes.array,
-  filter: PropTypes.string,
+  // filter: PropTypes.string,
   onDeleteContact: PropTypes.func,
 };

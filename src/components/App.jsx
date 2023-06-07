@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import css from './app.module.css';
 import ContactForm from './contactForm/contactForm';
-import Filter from './filter/filter';
 import ContactList from './contactList/contactList';
+import Filter from './filter/filter';
 
 class App extends Component {
   state = {
@@ -16,6 +16,10 @@ class App extends Component {
     const { contacts } = this.state;
     const { name, number } = event.target;
     // console.log(event.target);
+    if (contacts.map(contact => contact.name).includes(name.value)) {
+      return alert(`Name ${name.value} is already here`);
+    }
+
     this.setState({
       contacts: [
         ...contacts,
@@ -58,6 +62,7 @@ class App extends Component {
         />
         <ContactList
           contacts={this.state.contacts}
+          filter={this.state.filter}
           onDeleteContact={this.deleteContact}
         />
       </div>
