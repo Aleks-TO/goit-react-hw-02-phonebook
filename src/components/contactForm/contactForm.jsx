@@ -35,4 +35,6 @@ const ContactForm = ({ formSubmit }) => {
 
 export default ContactForm;
 
-ContactForm.propTypes = {};
+ContactForm.prototype = {
+  formSubmit: PropTypes.func,
+};
